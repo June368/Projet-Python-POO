@@ -1,6 +1,7 @@
 import pygame
 from joueur import Joueur
-
+from terrain import Terrain
+from plante import Plante
 
 class Jeu :
     def __init__(self):
@@ -10,6 +11,10 @@ class Jeu :
 
         self.largeur = 1280
         self.hauteur =  720
+        # test implementation du champ
+        self.champ = Terrain(500, 450, 200, 150, champ) 
+        newplante = Plante("blé", 5)
+        self.champ.planter(0, 0, newplante)
     def move(self):
         
          
@@ -35,7 +40,9 @@ class Jeu :
         #jeu = Jeu()          #image de fond
         while running:
  
-            ecran.blit(background,(0,0)),ecran.blit(self.player.image,self.player.rect)
+            ecran.blit(background,(0,0))
+            self.champ.afficher(ecran)                                    #affichage du champ et des plantes                              
+            ecran.blit(self.player.image,self.player.rect)
 
             self.move() 
     
